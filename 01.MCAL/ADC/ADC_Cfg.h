@@ -1,0 +1,81 @@
+/* 
+ * File:   ADC_Cfg.h
+ * Author: Mohamed Hamada
+ *
+ * Created on 03 ?????, 2023, 02:55 ?
+ */
+
+#ifndef ADC_CFG_H
+#define	ADC_CFG_H
+
+#include "../../LIB/Micro_Config.h"
+#include "ADC_Private.h"
+
+/*
+ *Options :
+ * ADC_RESULT_FORMAT_LEFT
+ * ADC_RESULT_FORMAT_RIGHT
+ */
+#define ADC_RESULT_FORMAT         ADC_RESULT_FORMAT_RIGHT
+
+/*
+ Options :
+ * ADC_ENABLE_VOLTAGE_REFERENCE()
+ * ADC_DISABLE_VOLTAGE_REFERENCE()
+ */
+
+#define ADC_VOLTAGE_REFERENCE()   ADC_DISABLE_VOLTAGE_REFERENCE()
+
+
+/*
+ * Options :
+ ADC_AN0_ANALOG_FUNCTIONALITY    
+ ADC_AN1_ANALOG_FUNCTIONALITY    
+ ADC_AN2_ANALOG_FUNCTIONALITY    
+ ADC_AN3_ANALOG_FUNCTIONALITY    
+ ADC_AN4_ANALOG_FUNCTIONALITY    
+ ADC_AN5_ANALOG_FUNCTIONALITY    
+ ADC_AN6_ANALOG_FUNCTIONALITY    
+ ADC_AN7_ANALOG_FUNCTIONALITY    
+ ADC_AN8_ANALOG_FUNCTIONALITY    
+ ADC_AN9_ANALOG_FUNCTIONALITY    
+ ADC_AN10_ANALOG_FUNCTIONALITY   
+ ADC_AN11_ANALOG_FUNCTIONALITY   
+ ADC_AN12_ANALOG_FUNCTIONALITY   
+ ADC_ALL_ANALOG_FUNCTIONALITY    
+ ADC_ALL_DIGITAL_FUNCTIONALITY
+ */
+
+#define ADC_PORT_CONFIGURATION_CONTROL     ADC_ALL_ANALOG_FUNCTIONALITY     
+
+
+  
+/*
+ * opions :
+ *  TAD_0   
+ *  TAD_2  
+ *  TAD_4  
+ *  TAD_6  
+ *  TAD_8  
+ *  TAD_12  
+ *  TAD_16
+ *  TAD_20
+ */ 
+#define  ADC_ACQUISITION_TIME             TAD_12     
+
+/*
+ * @Options :
+ * FOSC_div_2 
+ * FOSC_div_8    
+ * FOSC_div_32    
+ * FRC = 0b011 
+ * FOSC_div_4   
+ * FOSC_div_16    
+ * FOSC_div_64         
+ * FRC 
+ */
+
+#define ADC_CONVERSION_CLOCK          FOSC_div_16
+        
+#endif	/* ADC_CFG_H */
+

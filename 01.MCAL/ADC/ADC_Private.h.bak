@@ -1,0 +1,128 @@
+/* 
+ * File:   ADC_Private.h
+ * Author: Moham
+ *
+ * Created on 03 ?????, 2023, 02:13 ?
+ */
+
+#ifndef ADC_PRIVATE_H
+#define	ADC_PRIVATE_H
+
+#include "../../LIB/Micro_Config.h"
+
+#define ADC_Enable()     (ADCON0bits.ADON = 1)
+#define ADC_Disable()    (ADCON0bits.ADON = 0)
+
+#define Analog_Channel_Select(_config)          (ADCON0bits.CHS = (_config))
+
+/* A/D Conversion Status : A/D conversion in progress / A/D Idle */
+#define ADC_CONVERSION_STATUS()  (ADCON0bits.GO_nDONE)
+
+
+
+/**
+ * @brief Start the Analog-To-Digital Conversion
+ */
+#define ADC_START_CONVERSION()  (ADCON0bits.GODONE = 1)
+
+/**
+ * @brief Analog-To-Digital Port Configuration Control
+ * @note  When ADC_AN4_ANALOG_FUNCTIONALITY is configured, this means
+ *        AN4,AN3,AN2,AN1,AN0 are Analog functionality.
+ */
+#define ADC_AN0_ANALOG_FUNCTIONALITY    0x0E
+#define ADC_AN1_ANALOG_FUNCTIONALITY    0x0D
+#define ADC_AN2_ANALOG_FUNCTIONALITY    0x0C
+#define ADC_AN3_ANALOG_FUNCTIONALITY    0x0B
+#define ADC_AN4_ANALOG_FUNCTIONALITY    0x0A
+#define ADC_AN5_ANALOG_FUNCTIONALITY    0x09
+#define ADC_AN6_ANALOG_FUNCTIONALITY    0x08
+#define ADC_AN7_ANALOG_FUNCTIONALITY    0x07
+#define ADC_AN8_ANALOG_FUNCTIONALITY    0x06
+#define ADC_AN9_ANALOG_FUNCTIONALITY    0x05
+#define ADC_AN10_ANALOG_FUNCTIONALITY   0x04
+#define ADC_AN11_ANALOG_FUNCTIONALITY   0x03
+#define ADC_AN12_ANALOG_FUNCTIONALITY   0x02
+#define ADC_ALL_ANALOG_FUNCTIONALITY    0x00
+#define ADC_ALL_DIGITAL_FUNCTIONALITY   0x0F
+
+/**
+ * @brief  Analog-To-Digital Port Configuration Control
+ * @note   Example : ADC_ANALOG_DIGITAL_PORT_CONFIG(ADC_AN4_ANALOG_FUNCTIONALITY);
+		   When ADC_AN4_ANALOG_FUNCTIONALITY is configured, this means
+ *         AN4,AN3,AN2,AN1,AN0 are Analog functionality.
+ *         @ref Analog-To-Digital Port Configuration Control
+ */
+#define ADC_ANALOG_DIGITAL_PORT_CONFIG(_CONFIG) (ADCON1bits.PCFG = _CONFIG)
+
+
+/**
+ * @brief  Voltage Reference Configuration
+ * @note   ADC_ENABLE_VOLTAGE_REFERENCE()  : Voltage Reference is VREF- & VREF+
+ *         ADC_DISABLE_VOLTAGE_REFERENCE() : Voltage Reference is VSS & VDD
+ */
+#define ADC_ENABLE_VOLTAGE_REFERENCE()  ADCON1bits.VCFG1 = 1;\
+                                           ADCON1bits.VCFG0 = 1;
+                                        
+#define ADC_DISABLE_VOLTAGE_REFERENCE() ADCON1bits.VCFG1 = 0;\
+                                           ADCON1bits.VCFG0 = 0;
+                                        
+
+#define ADC_RESULT_FORMAT_RIGHT_JUSTIFIED()        (ADCON2bits.ADFM = 1)
+#define ADC_RESULT_FORMAT_LEFT_JUSTIFIED()         (ADCON2bits.ADFM = 0)
+
+
+/*typedef enum
+{
+  TAD_0  = 0b000,  
+  TAD_2  = 0b001,  
+  TAD_4  = 0b010,  
+  TAD_6  = 0b011,
+  TAD_8  = 0b100,  
+  TAD_12 = 0b101,  
+  TAD_16= 0b110 ,  
+  TAD_20 = 0b111
+                    
+} ADC_Acquisition_Time;*/
+
+
+#define TAD_0   0b000
+#define TAD_2   0b001
+#define TAD_4   0b010
+#define TAD_6   0b011
+#define TAD_8   0b100
+#define TAD_12  0b101
+#define TAD_16  0b110 
+#define TAD_20  0b111
+
+
+
+
+     typedef enum
+     {
+     FOSC_div_2 = 0b000,
+     FOSC_div_8 = 0b001,   
+     FOSC_div_32 = 0b010,   
+     FRC = 0b011,           /* (clock derived from A/D RC oscillator)  */
+     FOSC_div_4 = 0b100,   
+     FOSC_div_16 = 0b101,   
+     FOSC_div_64 = 0b110,        
+     FRC = 0b111             /* (clock derived from A/D RC oscillator*/
+     }ADC_Conversion_Clock;
+
+       
+
+
+
+#define ADC_CONVERSION_CLOCK_SELECT(_CONFIG)         (ADCON2bits.ADCS = _CONFIG)
+
+
+#define ADC_RESULT_FORMAT_RIGHT                1U
+#define ADC_RESULT_FORMAT_LEFT                 0U
+
+#define ADC_RESULT_FORMAT_jUSTIFIED(_CONFIG)             (ADCON2bits.ADFM = _CONFIG)
+
+#define ADC_ACQUISITION_TIME_SEECT(_CONFIG)              (ADCON2bits.ACQT = _CONFIG)
+
+#endif	/* ADC_PRIVATE_H */
+
